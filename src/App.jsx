@@ -9,6 +9,7 @@ function App() {
   const [isFinished, setIsFinished] = useState(false)
   const [time, setTime] = useState(10)
   const [timeFinished, setTimeFinished] = useState(false)
+  const [showAnswer, setShowAnswer] = useState(false)
 
   useEffect(() => {
     const timeInterval = setInterval(() => {
@@ -54,7 +55,11 @@ function App() {
     }, 1000)
   }
 
-  if (isFinished) {
+  if (showAnswer) {
+    return (
+      <main className='d-flex justify-content-center align-items-center bg'>Respuestas</main>
+    )
+  } else if (isFinished) {
     return (
       <main className='d-flex justify-content-center align-items-center bg'>
         <div
@@ -62,6 +67,12 @@ function App() {
         >
           <h3 className='mb-4'>Juego Terminado</h3>
           <p className='mt-4'>Respondiste {points} de {questions.length} preguntas correctas!</p>
+          <div className='bg-secondary align-self-center w-50 border-rounded mt-1 p-1 shadow-lg'>
+            <button 
+              className='bg-dark fs-4 btn text-white w-100 h-100 border-rounded option'
+              onClick={() => setShowAnswer(true)}
+            >Ver Respuestas</button>
+          </div>
         </div>
       </main>
     )
