@@ -8,15 +8,23 @@ function App() {
   const [points, setPoints] = useState(0) 
   const [isFinished, setIsFinished] = useState(false)
 
-  const handleClick = (correct) => {
+  const handleClick = (correct, e) => {
+    e.target.classList.remove("bg-dark")
+    e.target.classList.add(correct ? "bg-success" : "bg-danger")
     if (correct) {
       alert("Respuesta Correcta!")
-      setCurrentQuestion(currentQuestion + 1)
+      setPoints(points + 1)
     } else {
       alert("Respuesta Incorrecta!")
     }
+    
+    if (currentQuestion === questions.length - 1) {
+      setIsFinished(true)
+    } else {
+      setCurrentQuestion(currentQuestion + 1)
+    }
   }
-
+  
   return (
     <>
       <main className='d-flex justify-content-center align-items-center bg'>
@@ -33,9 +41,9 @@ function App() {
               <div className="row" key={rowIndex}>
                 {[0, 1].map((colIndex) => (
                   <div className="col bg-secondary border-rounded m-1 p-1 shadow-lg" key={startIndex + colIndex}>
-                    <div className='bg-dark border-rounded option' onClick={() => handleClick(questions[currentQuestion].answers[startIndex + colIndex].correct)}>
+                    <button className='bg-dark fs-4 btn text-white w-100 h-100 border-rounded option' onClick={(e) => handleClick(questions[currentQuestion].answers[startIndex + colIndex].correct, e)}>
                       {questions[currentQuestion].answers[startIndex + colIndex].text}
-                    </div>
+                    </button>
                   </div>
                 ))}
               </div>
