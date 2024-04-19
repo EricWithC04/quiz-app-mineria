@@ -24,7 +24,20 @@ function App() {
       setCurrentQuestion(currentQuestion + 1)
     }
   }
-  
+
+  if (isFinished) {
+    return (
+      <main className='d-flex justify-content-center align-items-center bg'>
+        <div
+          className='d-flex flex-column bg-dark text-white border-rounded w-50 card-question fs-4 justify-content-center shadow-lg pt-3 pb-3'
+        >
+          <h3 className='mb-4'>Juego Terminado</h3>
+          <p className='mt-4'>Respondiste {points} de {questions.length} preguntas correctas!</p>
+        </div>
+      </main>
+    )
+  }
+
   return (
     <>
       <main className='d-flex justify-content-center align-items-center bg'>
