@@ -11,18 +11,21 @@ function App() {
   const handleClick = (correct, e) => {
     e.target.classList.remove("bg-dark")
     e.target.classList.add(correct ? "bg-success" : "bg-danger")
+    
     if (correct) {
-      alert("Respuesta Correcta!")
       setPoints(points + 1)
-    } else {
-      alert("Respuesta Incorrecta!")
     }
     
-    if (currentQuestion === questions.length - 1) {
-      setIsFinished(true)
-    } else {
-      setCurrentQuestion(currentQuestion + 1)
-    }
+    setTimeout(() => {
+      e.target.classList.remove("bg-success", "bg-danger")
+      e.target.classList.add("bg-dark")
+      
+      if (currentQuestion === questions.length - 1) {
+        setIsFinished(true)
+      } else {
+        setCurrentQuestion(currentQuestion + 1)
+      }
+    }, 1000)
   }
 
   if (isFinished) {
