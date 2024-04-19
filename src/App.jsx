@@ -7,6 +7,31 @@ function App() {
   const [currentQuestion, setCurrentQuestion] = useState(0) 
   const [points, setPoints] = useState(0) 
   const [isFinished, setIsFinished] = useState(false)
+  const [time, setTime] = useState(10)
+  const [timeFinished, setTimeFinished] = useState(false)
+
+  useEffect(() => {
+    const timeInterval = setInterval(() => {
+      if (time > 0) setTime((prevTime) => prevTime - 1);
+      if (time === 0) setTimeFinished(true)
+    }, 1000)
+
+    return () => clearInterval(timeInterval)
+  }, [time])
+
+  useEffect(() => {
+    if (timeFinished) {
+      setTimeout(() => {
+        setTime(10)
+        setTimeFinished(false)
+        if (currentQuestion === questions.length - 1) {
+          setIsFinished(true)
+        } else {
+          setCurrentQuestion(currentQuestion + 1)
+        }
+      }, 800)
+    }
+  }, [timeFinished])
 
   const handleClick = (correct, e) => {
     e.target.classList.remove("bg-dark")
@@ -25,6 +50,7 @@ function App() {
       } else {
         setCurrentQuestion(currentQuestion + 1)
       }
+      setTime(10)
     }, 1000)
   }
 
@@ -51,6 +77,7 @@ function App() {
             <h4 className='align-self-start ms-4'>Pregunta {currentQuestion + 1}</h4>
             <hr className='m-2'/>
             <p className='align-self-start ms-4'>{questions[currentQuestion].question}</p>
+            <p className='align-self-start ms-4'>Tiempo Restante: {time}</p>
           </div>
           <div className='container'>
             {[0, 2].map((startIndex, rowIndex) => (
