@@ -1,5 +1,8 @@
 import questions from './utils/questions'
 import { useState, useEffect } from 'react'
+import FinishGame from './components/FinishGame/FinishGame'
+import ShowAnswers from './components/ShowAnswers/ShowAnswers'
+import CardQuestions from './components/CardQuestions/CardQuestions'
 import './App.css'
 
 function App() {
@@ -58,92 +61,40 @@ function App() {
     }, 1000)
   }
 
-  const handleNextAnswer = (e) => {
+  const handleNextAnswer = () => {
     setCurrentQuestion(prev => prev + 1)
+  }
+
+  const handleShowAnswers = () => {
+    setShowAnswer(true)
+    setCurrentQuestion(0)
   }
 
   if (showAnswer) {
     return (
-      <main className='d-flex justify-content-center align-items-center bg'>
-        <div 
-          className='d-flex flex-column bg-dark text-white border-rounded w-50 card-question fs-4 justify-content-between shadow-lg pt-3 pb-3'
-        >
-          <div className='d-flex flex-column'>
-            <h4 className='align-self-start ms-4'>Pregunta {currentQuestion + 1}</h4>
-            <hr className='m-2'/>
-            <p className='align-self-start ms-4'>{questions[currentQuestion].question}</p>
-            {
-              (currentQuestion + 1) < questions.length ?
-              <button className='btn btn-secondary align-self-start ms-4' onClick={(e) => handleNextAnswer(e)}>Continuar</button> :
-              <button className='btn btn-secondary align-self-start ms-4' onClick={() => location.reload()}>Volver a Jugar</button>
-            }
-          </div>
-          <div className='container'>
-            {[0, 2].map((startIndex, rowIndex) => (
-              <div className="row" key={rowIndex}>
-                {[0, 1].map((colIndex) => (
-                  <div className="col bg-secondary border-rounded m-1 p-1 shadow-lg" key={startIndex + colIndex}>
-                    <button className={`${questions[currentQuestion].answers[startIndex + colIndex].correct ? "bg-success" : "bg-danger"} fs-4 btn text-white w-100 h-100 border-rounded option`}>
-                      {questions[currentQuestion].answers[startIndex + colIndex].text}
-                    </button>
-                  </div>
-                ))}
-              </div>
-            ))}
-          </div>
-        </div>
-      </main>
+      <ShowAnswers
+        questions={questions}
+        currentQuestion={currentQuestion}
+        handleNextAnswer={handleNextAnswer}
+      />
     )
   } else if (isFinished) {
     return (
-      <main className='d-flex justify-content-center align-items-center bg'>
-        <div
-          className='d-flex flex-column bg-dark text-white border-rounded w-50 card-question fs-4 justify-content-center shadow-lg pt-3 pb-3'
-        >
-          <h3 className='mb-4'>Juego Terminado</h3>
-          <p className='mt-4'>Respondiste {points} de {questions.length} preguntas correctas!</p>
-          <div className='bg-secondary align-self-center w-50 border-rounded mt-1 p-1 shadow-lg'>
-            <button 
-              className='bg-dark fs-4 btn text-white w-100 h-100 border-rounded option'
-              onClick={() => {
-                setShowAnswer(true)
-                setCurrentQuestion(0)
-              }}
-            >Ver Respuestas</button>
-          </div>
-        </div>
-      </main>
+      <FinishGame 
+        handleShowAnswers={handleShowAnswers}
+        points={points}
+        countQuestions={questions.length}
+      />
     )
   }
 
   return (
-    <>
-      <main className='d-flex justify-content-center align-items-center bg'>
-        <div 
-          className='d-flex flex-column bg-dark text-white border-rounded w-50 card-question fs-4 justify-content-between shadow-lg pt-3 pb-3'
-        >
-          <div className='d-flex flex-column'>
-            <h4 className='align-self-start ms-4'>Pregunta {currentQuestion + 1}</h4>
-            <hr className='m-2'/>
-            <p className='align-self-start ms-4'>{questions[currentQuestion].question}</p>
-            <p className='align-self-start ms-4'>Tiempo Restante: {time}</p>
-          </div>
-          <div className='container'>
-            {[0, 2].map((startIndex, rowIndex) => (
-              <div className="row" key={rowIndex}>
-                {[0, 1].map((colIndex) => (
-                  <div className="col bg-secondary border-rounded m-1 p-1 shadow-lg" key={startIndex + colIndex}>
-                    <button className='bg-dark fs-4 btn text-white w-100 h-100 border-rounded option' onClick={(e) => handleClick(questions[currentQuestion].answers[startIndex + colIndex].correct, e)}>
-                      {questions[currentQuestion].answers[startIndex + colIndex].text}
-                    </button>
-                  </div>
-                ))}
-              </div>
-            ))}
-          </div>
-        </div>
-      </main>
-    </>
+    <CardQuestions 
+      questions={questions}
+      currentQuestion={currentQuestion}
+      time={time}
+      handleClick={handleClick}
+    />
   )
 }
 
