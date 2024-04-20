@@ -74,7 +74,8 @@ function App() {
             <p className='align-self-start ms-4'>{questions[currentQuestion].question}</p>
             {
               (currentQuestion + 1) < questions.length ?
-              <button className='btn btn-secondary align-self-start ms-4' onClick={(e) => handleNextAnswer(e)}>Continuar</button> : null
+              <button className='btn btn-secondary align-self-start ms-4' onClick={(e) => handleNextAnswer(e)}>Continuar</button> :
+              <button className='btn btn-secondary align-self-start ms-4' onClick={() => location.reload()}>Volver a Jugar</button>
             }
           </div>
           <div className='container'>
