@@ -12,12 +12,15 @@ function App() {
   const [showAnswer, setShowAnswer] = useState(false)
 
   useEffect(() => {
-    const timeInterval = setInterval(() => {
-      if (time > 0) setTime((prevTime) => prevTime - 1);
-      if (time === 0) setTimeFinished(true)
-    }, 1000)
+    if (!isFinished) {
+      const timeInterval = setInterval(() => {
+        if (time > 0) setTime((prevTime) => prevTime - 1);
+        if (time === 0) setTimeFinished(true)
+      }, 1000)
+  
+      return () => clearInterval(timeInterval)
 
-    return () => clearInterval(timeInterval)
+    }
   }, [time])
 
   useEffect(() => {
@@ -55,9 +58,40 @@ function App() {
     }, 1000)
   }
 
+  const handleNextAnswer = (e) => {
+    setCurrentQuestion(prev => prev + 1)
+  }
+
   if (showAnswer) {
     return (
-      <main className='d-flex justify-content-center align-items-center bg'>Respuestas</main>
+      <main className='d-flex justify-content-center align-items-center bg'>
+        <div 
+          className='d-flex flex-column bg-dark text-white border-rounded w-50 card-question fs-4 justify-content-between shadow-lg pt-3 pb-3'
+        >
+          <div className='d-flex flex-column'>
+            <h4 className='align-self-start ms-4'>Pregunta {currentQuestion + 1}</h4>
+            <hr className='m-2'/>
+            <p className='align-self-start ms-4'>{questions[currentQuestion].question}</p>
+            {
+              (currentQuestion + 1) < questions.length ?
+              <button className='btn btn-secondary align-self-start ms-4' onClick={(e) => handleNextAnswer(e)}>Continuar</button> : null
+            }
+          </div>
+          <div className='container'>
+            {[0, 2].map((startIndex, rowIndex) => (
+              <div className="row" key={rowIndex}>
+                {[0, 1].map((colIndex) => (
+                  <div className="col bg-secondary border-rounded m-1 p-1 shadow-lg" key={startIndex + colIndex}>
+                    <button className={`${questions[currentQuestion].answers[startIndex + colIndex].correct ? "bg-success" : "bg-danger"} fs-4 btn text-white w-100 h-100 border-rounded option`}>
+                      {questions[currentQuestion].answers[startIndex + colIndex].text}
+                    </button>
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
+      </main>
     )
   } else if (isFinished) {
     return (
@@ -70,7 +104,10 @@ function App() {
           <div className='bg-secondary align-self-center w-50 border-rounded mt-1 p-1 shadow-lg'>
             <button 
               className='bg-dark fs-4 btn text-white w-100 h-100 border-rounded option'
-              onClick={() => setShowAnswer(true)}
+              onClick={() => {
+                setShowAnswer(true)
+                setCurrentQuestion(0)
+              }}
             >Ver Respuestas</button>
           </div>
         </div>
