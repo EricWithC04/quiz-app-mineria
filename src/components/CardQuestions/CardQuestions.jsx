@@ -9,7 +9,7 @@ const CardQuestions = ({ questions, currentQuestion, time, handleClick }) => {
                 <div className='d-flex flex-column'>
                     <h4 className='align-self-start ms-4'>Pregunta {currentQuestion + 1}</h4>
                     <hr className='m-2' />
-                    <p className='align-self-start ms-4'>{questions[currentQuestion].question}</p>
+                    <p className='align-self-start ms-4 fs-5'>{questions[currentQuestion].question}</p>
                     <p className='align-self-start ms-4 text-warning'>Tiempo Restante: {time}</p>
                 </div>
                 <div className='container'>
@@ -17,7 +17,7 @@ const CardQuestions = ({ questions, currentQuestion, time, handleClick }) => {
                         <div className="row" key={rowIndex}>
                             {[0, 1].map((colIndex) => (
                                 <div className="col bg-secondary border-rounded m-1 p-1 shadow-lg" key={startIndex + colIndex}>
-                                    <button className='bg-dark fs-4 btn text-white w-100 h-100 border-rounded option' onClick={(e) => handleClick(questions[currentQuestion].answers[startIndex + colIndex].correct, e)}>
+                                    <button className='bg-dark fs-5 btn text-white w-100 h-100 border-rounded option' onClick={(e) => handleClick(questions[currentQuestion].answers[startIndex + colIndex].correct, e)}>
                                         {questions[currentQuestion].answers[startIndex + colIndex].text}
                                     </button>
                                 </div>
