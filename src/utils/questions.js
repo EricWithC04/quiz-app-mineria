@@ -84,7 +84,7 @@ const questions = [
         ]
     },
     {
-        question: "¿Cuál de estas NO es una herramienta para la preparación de los datos?",
+        question: "¿Cuál de estas no es una herramienta para la preparación de los datos?",
         answers: [
             {
                 text: "Redes Sociales",
@@ -100,6 +100,111 @@ const questions = [
             },
             {
                 text: "Paquetes para exploración",
+                correct: false
+            },
+        ]
+    },
+    {
+        question: "¿Cuál de estas opciones corresponde a una etapa en el proceso de preparación de los datos?",
+        answers: [
+            {
+                text: "Limpieza de datos",
+                correct: true
+            },
+            {
+                text: "Diseño de interfaces de usuario",
+                correct: false
+            },
+            {
+                text: "Generación de informes finales",
+                correct: false
+            },
+            {
+                text: "Creación de Base de Datos",
+                correct: false
+            },
+        ]
+    },
+    {
+        question: "¿Cuál de estos es un problema común a la hora de manejar los datos?",
+        answers: [
+            {
+                text: "Falta de almacenamiento",
+                correct: false
+            },
+            {
+                text: "Datos duplicados",
+                correct: true
+            },
+            {
+                text: "Incompatibilidad de sistemas",
+                correct: false
+            },
+            {
+                text: "Exceso de documentación",
+                correct: false
+            },
+        ]
+    },
+    {
+        question: "¿Cuál de estos es un formato de archivo de datos?",
+        answers: [
+            {
+                text: "PDF",
+                correct: false
+            },
+            {
+                text: "TXT",
+                correct: false
+            },
+            {
+                text: "DOCX",
+                correct: false
+            },
+            {
+                text: "CSV",
+                correct: true
+            },
+        ]
+    },
+    {
+        question: "¿Cuál de estos es un lenguaje de programación comúnmente utilizado para el análisis de la información a día de hoy?",
+        answers: [
+            {
+                text: "Kotlin",
+                correct: false
+            },
+            {
+                text: "PHP",
+                correct: false
+            },
+            {
+                text: "Visual Basic",
+                correct: false
+            },
+            {
+                text: "R",
+                correct: true
+            },
+        ]
+    },
+    {
+        question: "¿Cuál de estas opciones es un paquete especializado en el manejo de la información?",
+        answers: [
+            {
+                text: "Microsoft Office",
+                correct: false
+            },
+            {
+                text: "Unreal Engine",
+                correct: false
+            },
+            {
+                text: "RapidMiner",
+                correct: true
+            },
+            {
+                text: "AutoCAD",
                 correct: false
             },
         ]
