@@ -1,4 +1,5 @@
 import questions from './utils/questions'
+import arrayRandomElements from './utils/arrayRandomElements'
 import { useState, useEffect } from 'react'
 import FinishGame from './components/FinishGame/FinishGame'
 import ShowAnswers from './components/ShowAnswers/ShowAnswers'
@@ -6,6 +7,8 @@ import CardQuestions from './components/CardQuestions/CardQuestions'
 import './App.css'
 
 function App() {
+
+  const [selectedQuestions] = useState(arrayRandomElements(questions, 5))
 
   const [currentQuestion, setCurrentQuestion] = useState(0) 
   const [points, setPoints] = useState(0) 
@@ -31,7 +34,7 @@ function App() {
       setTimeout(() => {
         setTime(10)
         setTimeFinished(false)
-        if (currentQuestion === questions.length - 1) {
+        if (currentQuestion === selectedQuestions.length - 1) {
           setIsFinished(true)
         } else {
           setCurrentQuestion(currentQuestion + 1)
@@ -52,7 +55,7 @@ function App() {
       e.target.classList.remove("bg-success", "bg-danger")
       e.target.classList.add("bg-dark")
       
-      if (currentQuestion === questions.length - 1) {
+      if (currentQuestion === selectedQuestions.length - 1) {
         setIsFinished(true)
       } else {
         setCurrentQuestion(currentQuestion + 1)
@@ -73,7 +76,7 @@ function App() {
   if (showAnswer) {
     return (
       <ShowAnswers
-        questions={questions}
+        questions={selectedQuestions}
         currentQuestion={currentQuestion}
         handleNextAnswer={handleNextAnswer}
       />
@@ -83,14 +86,14 @@ function App() {
       <FinishGame 
         handleShowAnswers={handleShowAnswers}
         points={points}
-        countQuestions={questions.length}
+        countQuestions={selectedQuestions.length}
       />
     )
   }
 
   return (
     <CardQuestions 
-      questions={questions}
+      questions={selectedQuestions}
       currentQuestion={currentQuestion}
       time={time}
       handleClick={handleClick}
