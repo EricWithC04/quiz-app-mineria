@@ -1,105 +1,105 @@
 const questions = [
     {
-        question: "¿Qué equipo ganará la champions 2024?",
+        question: "¿Cuánto tiempo puede ocupar el proceso de preparación de los datos en un proyecto de Big Data?",
         answers: [
             {
-                text: "Bayern",
+                text: "10% al 30%",
                 correct: false
             },
             {
-                text: "Real Madrid",
+                text: "30% al 50%",
                 correct: false
             },
             {
-                text: "PSG",
-                correct: false
-            },
-            {
-                text: "Dortmund",
-                correct: true
-            },
-        ]
-    },
-    {
-        question: "¿Cuál es el río más largo del mundo?",
-        answers: [
-            {
-                text: "Amazonas",
+                text: "50% al 80%",
                 correct: true
             },
             {
-                text: "Nilo",
-                correct: false
-            },
-            {
-                text: "Misisipi",
-                correct: false
-            },
-            {
-                text: "Yangtsé",
+                text: "30% al 80%",
                 correct: false
             },
         ]
     },
     {
-        question: "¿Cuál es el país más grande del mundo por área?",
+        question: "La Real Academia Española define el término 'dato' como “Información dispuesta de manera adecuada para su tratamiento por computadora” en un campo específico, ¿De qué campo se trata?",
         answers: [
             {
-                text: "Rusia",
+                text: "Estadística",
+                correct: false
+            },
+            {
+                text: "Informática",
                 correct: true
             },
             {
-                text: "China",
+                text: "Bases de Datos",
                 correct: false
             },
             {
-                text: "Estados Unidos",
-                correct: false
-            },
-            {
-                text: "Canadá",
+                text: "Machine Learning",
                 correct: false
             },
         ]
     },
     {
-        question: "¿Quién escribió 'El Principito'?",
+        question: "¿Cuál de las siguientes opciones no corresponde a una categoría de tipos de datos?",
         answers: [
             {
-                text: "Antoine de Saint-Exupéry",
+                text: "Estructurados",
+                correct: false
+            },
+            {
+                text: "Semiestructurados",
+                correct: false
+            },
+            {
+                text: "Reestructurados",
                 correct: true
             },
             {
-                text: "J.K. Rowling",
-                correct: false
-            },
-            {
-                text: "William Shakespeare",
-                correct: false
-            },
-            {
-                text: "Gabriel García Márquez",
+                text: "No estructurados",
                 correct: false
             },
         ]
     },
     {
-        question: "¿Cuál es el elemento más abundante en la corteza terrestre?",
+        question: "¿Qué ventajas nos trae entender el origen y la historia de los datos?",
         answers: [
             {
-                text: "Oxígeno",
+                text: "Aclarar dudas",
                 correct: false
             },
             {
-                text: "Silicio",
+                text: "Complementar la información",
+                correct: false
+            },
+            {
+                text: "Veracidad de los datos",
+                correct: false
+            },
+            {
+                text: "Todas las anteriores",
+                correct: true
+            },
+        ]
+    },
+    {
+        question: "¿Cuál de estas NO es una herramienta para la preparación de los datos?",
+        answers: [
+            {
+                text: "Redes Sociales",
                 correct: true
             },
             {
-                text: "Hierro",
+                text: "Lenguajes de Programación",
                 correct: false
             },
             {
-                text: "Aluminio",
+                text: "Formatos de manejo de datos",
+                correct: false
+            },
+            {
+                text: "Paquetes para exploración",
                 correct: false
             },
         ]
