@@ -4,11 +4,13 @@ import { useState, useEffect } from 'react'
 import FinishGame from './components/FinishGame/FinishGame'
 import ShowAnswers from './components/ShowAnswers/ShowAnswers'
 import CardQuestions from './components/CardQuestions/CardQuestions'
+import MainPage from './components/MainPage/MainPage'
 import './App.css'
 
 function App() {
 
   const [selectedQuestions] = useState(arrayRandomElements(questions, 5))
+  const [initialGame, setInitialGame] = useState(false)
 
   const [currentQuestion, setCurrentQuestion] = useState(0) 
   const [points, setPoints] = useState(0) 
@@ -19,15 +21,16 @@ function App() {
 
   useEffect(() => {
     if (!isFinished) {
-      const timeInterval = setInterval(() => {
-        if (time > 0) setTime((prevTime) => prevTime - 1);
-        if (time === 0) setTimeFinished(true)
-      }, 1000)
-  
-      return () => clearInterval(timeInterval)
-
+      if (initialGame) {
+        const timeInterval = setInterval(() => {
+          if (time > 0) setTime((prevTime) => prevTime - 1);
+          if (time === 0) setTimeFinished(true)
+        }, 1000)
+    
+        return () => clearInterval(timeInterval)
+      }
     }
-  }, [time])
+  }, [time, initialGame])
 
   useEffect(() => {
     if (timeFinished) {
@@ -89,14 +92,20 @@ function App() {
         countQuestions={selectedQuestions.length}
       />
     )
+  } else if (initialGame) {
+    return (
+      <CardQuestions 
+        questions={selectedQuestions}
+        currentQuestion={currentQuestion}
+        time={time}
+        handleClick={handleClick}
+      />
+    )
   }
 
   return (
-    <CardQuestions 
-      questions={selectedQuestions}
-      currentQuestion={currentQuestion}
-      time={time}
-      handleClick={handleClick}
+    <MainPage
+      setInitialGame={setInitialGame}
     />
   )
 }
