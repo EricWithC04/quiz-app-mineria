@@ -13,6 +13,10 @@
   padding-top: 20vh;
 }
 
+.real-width {
+  width: 48% !important;
+}
+
 .card-question {
   min-height: 50vh;
 }
@@ -40,5 +44,43 @@
 @media (prefers-reduced-motion: no-preference) {
   a:nth-of-type(2) .logo {
     animation: logo-spin infinite 20s linear;
+  }
+}
+
+@media (max-width: 768px) {
+  .card-question {
+    min-height: 70vh;
+    min-width: 75% !important;
+  }
+
+  .bg {
+    padding-top: 10vh;
+  }
+
+  .option {
+    font-size: 0.6rem;
+  }
+
+  .real-width {
+    width: 96% !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .card-question {
+    min-height: 80vh;
+    min-width: 96% !important;
+  }
+
+  .bg {
+    padding-top: 5vh;
+  }
+
+  .option {
+    font-size: 0.4rem;
+  }
+
+  .real-width {
+    width: 96% !important;
   }
 }

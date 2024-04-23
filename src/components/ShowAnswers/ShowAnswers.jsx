@@ -20,7 +20,7 @@ const ShowAnswers = ({ questions, currentQuestion, handleNextAnswer }) => {
                     {[0, 2].map((startIndex, rowIndex) => (
                         <div className="row" key={rowIndex}>
                             {[0, 1].map((colIndex) => (
-                                <div className="col bg-secondary border-rounded m-1 p-1 shadow-lg" key={startIndex + colIndex}>
+                                <div className="col-lg-6 real-width col-12 bg-secondary border-rounded m-1 p-1 shadow-lg" key={startIndex + colIndex}>
                                     <button className={`${questions[currentQuestion].answers[startIndex + colIndex].correct ? "bg-success" : "bg-danger"} fs-5 btn text-white w-100 h-100 border-rounded option`}>
                                         {questions[currentQuestion].answers[startIndex + colIndex].text}
                                     </button>

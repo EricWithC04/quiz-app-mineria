@@ -16,7 +16,7 @@ const CardQuestions = ({ questions, currentQuestion, time, handleClick }) => {
                     {[0, 2].map((startIndex, rowIndex) => (
                         <div className="row" key={rowIndex}>
                             {[0, 1].map((colIndex) => (
-                                <div className="col bg-secondary border-rounded m-1 p-1 shadow-lg" key={startIndex + colIndex}>
+                                <div className="col-lg-6 real-width col-12 bg-secondary border-rounded m-1 p-1 shadow-lg" key={startIndex + colIndex}>
                                     <button className='bg-dark fs-5 btn text-white w-100 h-100 border-rounded option' onClick={(e) => handleClick(questions[currentQuestion].answers[startIndex + colIndex].correct, e)}>
                                         {questions[currentQuestion].answers[startIndex + colIndex].text}
                                     </button>
